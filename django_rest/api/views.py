@@ -1,9 +1,6 @@
 from rest_framework import viewsets
 from .models import Usuario, Tarefa, Postagem, Comentario, Album, Foto
-from .serializers import (
-    UsuarioSerializer, TarefaSerializer, PostagemSerializer,
-    ComentarioSerializer, AlbumSerializer, FotoSerializer
-)
+from .serializers import UsuarioSerializer, TarefaSerializer, PostagemSerializer, ComentarioSerializer, AlbumSerializer, FotoSerializer
 
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()

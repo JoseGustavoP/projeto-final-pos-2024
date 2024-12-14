@@ -17,15 +17,9 @@ const Sidebar = () => {
 
       {/* Nav Items */}
       <li className="nav-item">
-        <Link className="nav-link" to="/usuarios">
+        <Link className="nav-link" to="/">
           <i className="fas fa-fw fa-user"></i>
           <span>Usuários</span>
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/usuarios/criar">
-          <i className="fas fa-fw fa-user-plus"></i>
-          <span>Criar Usuário</span>
         </Link>
       </li>
       <li className="nav-item">
@@ -35,21 +29,9 @@ const Sidebar = () => {
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/tarefas/criar">
-          <i className="fas fa-fw fa-plus"></i>
-          <span>Criar Tarefa</span>
-        </Link>
-      </li>
-      <li className="nav-item">
         <Link className="nav-link" to="/postagens">
           <i className="fas fa-fw fa-edit"></i>
           <span>Postagens</span>
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/postagens/criar">
-          <i className="fas fa-fw fa-pen"></i>
-          <span>Criar Postagem</span>
         </Link>
       </li>
       <li className="nav-item">
@@ -59,21 +41,9 @@ const Sidebar = () => {
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/albuns/criar">
-          <i className="fas fa-fw fa-plus-circle"></i>
-          <span>Criar Álbum</span>
-        </Link>
-      </li>
-      <li className="nav-item">
         <Link className="nav-link" to="/fotos">
           <i className="fas fa-fw fa-camera"></i>
           <span>Fotos</span>
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/fotos/criar">
-          <i className="fas fa-fw fa-plus-square"></i>
-          <span>Criar Foto</span>
         </Link>
       </li>
       <li className="nav-item">
@@ -82,13 +52,6 @@ const Sidebar = () => {
           <span>Comentários</span>
         </Link>
       </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/comentarios/criar">
-          <i className="fas fa-fw fa-comment-dots"></i>
-          <span>Criar Comentário</span>
-        </Link>
-      </li>
-
       {/* Divider */}
       <hr className="sidebar-divider d-none d-md-block" />
     </ul>

@@ -1,45 +1,57 @@
+// src/api.js
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:8000/'; // URL da sua API Django
+// Base URL da sua API Django (substitua pelo endereço correto)
+const API_URL = 'http://127.0.0.1:8000/';
 
+// Criando uma instância do Axios para facilitar o uso
 const api = axios.create({
   baseURL: API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
-// Funções para Usuários
+// Funções de CRUD para cada modelo
+
+// USUÁRIOS
 export const getUsuarios = () => api.get('usuarios/');
-export const createUsuario = (data) => api.post('usuarios/', data);
-export const updateUsuario = (id, data) => api.put(`usuarios/${id}/`, data);
+export const getUsuario = (id) => api.get(`usuarios/${id}/`);
+export const createUsuario = (usuario) => api.post('usuarios/', usuario);
+export const updateUsuario = (id, usuario) => api.put(`usuarios/${id}/`, usuario);
 export const deleteUsuario = (id) => api.delete(`usuarios/${id}/`);
 
-// Funções para Tarefas
+// TAREFAS
 export const getTarefas = () => api.get('tarefas/');
-export const createTarefa = (data) => api.post('tarefas/', data);
-export const updateTarefa = (id, data) => api.put(`tarefas/${id}/`, data);
+export const getTarefa = (id) => api.get(`tarefas/${id}/`);
+export const createTarefa = (tarefa) => api.post('tarefas/', tarefa);
+export const updateTarefa = (id, tarefa) => api.put(`tarefas/${id}/`, tarefa);
 export const deleteTarefa = (id) => api.delete(`tarefas/${id}/`);
 
-// Funções para Postagens
+// POSTAGENS
 export const getPostagens = () => api.get('postagens/');
-export const createPostagem = (data) => api.post('postagens/', data);
-export const updatePostagem = (id, data) => api.put(`postagens/${id}/`, data);
+export const getPostagem = (id) => api.get(`postagens/${id}/`);
+export const createPostagem = (postagem) => api.post('postagens/', postagem);
+export const updatePostagem = (id, postagem) => api.put(`postagens/${id}/`, postagem);
 export const deletePostagem = (id) => api.delete(`postagens/${id}/`);
 
-// Funções para Comentários
+// COMENTÁRIOS
 export const getComentarios = () => api.get('comentarios/');
-export const createComentario = (data) => api.post('comentarios/', data);
-export const updateComentario = (id, data) => api.put(`comentarios/${id}/`, data);
+export const getComentario = (id) => api.get(`comentarios/${id}/`);
+export const createComentario = (comentario) => api.post('comentarios/', comentario);
+export const updateComentario = (id, comentario) => api.put(`comentarios/${id}/`, comentario);
 export const deleteComentario = (id) => api.delete(`comentarios/${id}/`);
 
-// Funções para Álbuns
+// ALBUNS
 export const getAlbuns = () => api.get('albuns/');
-export const createAlbum = (data) => api.post('albuns/', data);
-export const updateAlbum = (id, data) => api.put(`albuns/${id}/`, data);
+export const getAlbum = (id) => api.get(`albuns/${id}/`);
+export const createAlbum = (album) => api.post('albuns/', album);
+export const updateAlbum = (id, album) => api.put(`albuns/${id}/`, album);
 export const deleteAlbum = (id) => api.delete(`albuns/${id}/`);
 
-// Funções para Fotos
+// FOTOS
 export const getFotos = () => api.get('fotos/');
-export const createFoto = (data) => api.post('fotos/', data);
-export const updateFoto = (id, data) => api.put(`fotos/${id}/`, data);
+export const getFoto = (id) => api.get(`fotos/${id}/`);
+export const createFoto = (foto) => api.post('fotos/', foto);
+export const updateFoto = (id, foto) => api.put(`fotos/${id}/`, foto);
 export const deleteFoto = (id) => api.delete(`fotos/${id}/`);
-
-export default api;
