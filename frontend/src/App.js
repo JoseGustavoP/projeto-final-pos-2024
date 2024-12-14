@@ -4,6 +4,9 @@ import Sidebar from "./components/Sidebar"; // Importando o Sidebar
 import UsuarioList from './components/UsuarioList'; // Importe os componentes
 import TarefaList from "./components/TarefaList";
 import PostagemList from "./components/PostagemList";
+import AlbumList from "./components/AlbumList";
+import FotoList from "./components/FotoList";
+import ComentarioList from "./components/ComentarioList";
 
 const App = () => {
   return (
@@ -21,7 +24,9 @@ const App = () => {
                 <Route path="/" element={<UsuarioList />} />
                 <Route path="/tarefas" element={<TarefaList />} />
                 <Route path="/postagens" element={<PostagemList />} />
-
+                <Route path="/albuns" element={<AlbumList />} />
+                <Route path="/fotos" element={<FotoList />} />
+                <Route path="/comentarios" element={<ComentarioList />} />
               </Routes>
             </main>
           </div>
