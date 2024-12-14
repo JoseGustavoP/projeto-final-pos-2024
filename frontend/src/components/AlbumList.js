@@ -10,16 +10,18 @@ const AlbumList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Lista de Álbuns</h2>
-      <ul>
+    <div className="container mt-5">
+      <h2 className="mb-4">Lista de Álbuns</h2>
+      <div className="list-group">
         {albuns.map((album) => (
-          <li key={album.id}>
-            <h3>{album.titulo}</h3>
-            <Link to={`/albuns/editar/${album.id}`}>Editar</Link>
-          </li>
+          <div key={album.id} className="list-group-item">
+            <h5 className="mb-1">{album.titulo}</h5>
+            <Link to={`/albuns/editar/${album.id}`} className="btn btn-sm btn-primary">
+              Editar
+            </Link>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

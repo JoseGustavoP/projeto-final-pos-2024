@@ -10,18 +10,20 @@ const UsuarioList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Lista de Usuários</h2>
-      <ul>
+    <div className="container mt-5">
+      <h2 className="mb-4">Lista de Usuários</h2>
+      <div className="list-group">
         {usuarios.map((usuario) => (
-          <li key={usuario.id}>
+          <div key={usuario.id} className="list-group-item">
             <h3>{usuario.nome}</h3>
-            <p>{usuario.email}</p>
-            <p>{usuario.nome_usuario}</p>
-            <Link to={`/usuarios/editar/${usuario.id}`}>Editar</Link>
-          </li>
+            <p><strong>Email:</strong> {usuario.email}</p>
+            <p><strong>Nome de Usuário:</strong> {usuario.nome_usuario}</p>
+            <Link to={`/usuarios/editar/${usuario.id}`} className="btn btn-primary">
+              Editar
+            </Link>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

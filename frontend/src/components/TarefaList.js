@@ -10,17 +10,23 @@ const TarefaList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Lista de Tarefas</h2>
-      <ul>
+    <div className="container mt-5">
+      <h2 className="mb-4">Lista de Tarefas</h2>
+      <div className="list-group">
         {tarefas.map((tarefa) => (
-          <li key={tarefa.id}>
-            <h3>{tarefa.titulo}</h3>
-            <p>{tarefa.concluido ? 'Concluída' : 'Pendente'}</p>
-            <Link to={`/tarefas/editar/${tarefa.id}`}>Editar</Link>
-          </li>
+          <div key={tarefa.id} className="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <h3>{tarefa.titulo}</h3>
+              <p>
+                <strong>Status:</strong> {tarefa.concluido ? 'Concluída' : 'Pendente'}
+              </p>
+            </div>
+            <Link to={`/tarefas/editar/${tarefa.id}`} className="btn btn-primary">
+              Editar
+            </Link>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

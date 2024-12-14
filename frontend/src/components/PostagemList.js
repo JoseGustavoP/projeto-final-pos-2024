@@ -10,17 +10,21 @@ const PostagemList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Lista de Postagens</h2>
-      <ul>
+    <div className="container mt-5">
+      <h2 className="mb-4">Lista de Postagens</h2>
+      <div className="list-group">
         {postagens.map((postagem) => (
-          <li key={postagem.id}>
-            <h3>{postagem.titulo}</h3>
-            <p>{postagem.conteudo}</p>
-            <Link to={`/postagens/editar/${postagem.id}`}>Editar</Link>
-          </li>
+          <div key={postagem.id} className="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <h3>{postagem.titulo}</h3>
+              <p>{postagem.conteudo}</p>
+            </div>
+            <Link to={`/postagens/editar/${postagem.id}`} className="btn btn-primary">
+              Editar
+            </Link>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

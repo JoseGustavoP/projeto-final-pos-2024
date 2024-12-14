@@ -10,17 +10,19 @@ const ComentarioList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Lista de Comentários</h2>
-      <ul>
+    <div className="container mt-5">
+      <h2 className="mb-4">Lista de Comentários</h2>
+      <div className="list-group">
         {comentarios.map((comentario) => (
-          <li key={comentario.id}>
-            <h3>{comentario.nome}</h3>
-            <p>{comentario.conteudo}</p>
-            <Link to={`/comentarios/editar/${comentario.id}`}>Editar</Link>
-          </li>
+          <div key={comentario.id} className="list-group-item">
+            <h5 className="mb-1">{comentario.nome}</h5>
+            <p className="mb-1">{comentario.conteudo}</p>
+            <Link to={`/comentarios/editar/${comentario.id}`} className="btn btn-sm btn-primary">
+              Editar
+            </Link>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

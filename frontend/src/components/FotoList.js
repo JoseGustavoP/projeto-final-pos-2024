@@ -10,17 +10,23 @@ const FotoList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Lista de Fotos</h2>
-      <ul>
+    <div className="container mt-5">
+      <h2 className="mb-4">Lista de Fotos</h2>
+      <div className="row">
         {fotos.map((foto) => (
-          <li key={foto.id}>
-            <h3>{foto.titulo}</h3>
-            <img src={foto.url_miniatura} alt={foto.titulo} />
-            <Link to={`/fotos/editar/${foto.id}`}>Editar</Link>
-          </li>
+          <div key={foto.id} className="col-md-4 mb-4">
+            <div className="card">
+              <img src={foto.url_miniatura} alt={foto.titulo} className="card-img-top" />
+              <div className="card-body">
+                <h5 className="card-title">{foto.titulo}</h5>
+                <Link to={`/fotos/editar/${foto.id}`} className="btn btn-primary">
+                  Editar
+                </Link>
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
