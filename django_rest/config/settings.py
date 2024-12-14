@@ -58,6 +58,28 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True
 
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://example.com',  # Adicione outras URLs conforme necessário
+]
+
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE',
+    'OPTIONS',
+]
+
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',  # Se você usa autenticação baseada em token
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [

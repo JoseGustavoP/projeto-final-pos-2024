@@ -26,16 +26,31 @@ const App = () => {
                 <Link to="/tarefas">Tarefas</Link>
               </li>
               <li>
+                <Link to="/tarefas/criar">Criar Tarefa</Link>
+              </li>
+              <li>
                 <Link to="/postagens">Postagens</Link>
+              </li>
+              <li>
+                <Link to="/postagens/criar">Criar Postagem</Link>
               </li>
               <li>
                 <Link to="/albuns">Álbuns</Link>
               </li>
               <li>
+                <Link to="/albuns/criar">Criar Álbum</Link>
+              </li>
+              <li>
                 <Link to="/fotos">Fotos</Link>
               </li>
               <li>
+                <Link to="/fotos/criar">Criar Foto</Link>
+              </li>
+              <li>
                 <Link to="/comentarios">Comentários</Link>
+              </li>
+              <li>
+                <Link to="/comentarios/criar">Criar Comentário</Link>
               </li>
             </ul>
           </nav>
@@ -48,14 +63,19 @@ const App = () => {
             <Route path="/usuarios/editar/:id" element={<Form tipo="usuario" />} />
             <Route path="/tarefas" element={<TarefaList />} />
             <Route path="/tarefas/criar" element={<Form tipo="tarefa" />} />
+            <Route path="/tarefas/editar/:id" element={<Form tipo="tarefa" />} />
             <Route path="/postagens" element={<PostagemList />} />
             <Route path="/postagens/criar" element={<Form tipo="postagem" />} />
+            <Route path="/postagens/editar/:id" element={<Form tipo="postagem" />} />
             <Route path="/albuns" element={<AlbumList />} />
             <Route path="/albuns/criar" element={<Form tipo="album" />} />
+            <Route path="/albuns/editar/:id" element={<Form tipo="album" />} />
             <Route path="/fotos" element={<FotoList />} />
             <Route path="/fotos/criar" element={<Form tipo="foto" />} />
+            <Route path="/fotos/editar/:id" element={<Form tipo="foto" />} />
             <Route path="/comentarios" element={<ComentarioList />} />
             <Route path="/comentarios/criar" element={<Form tipo="comentario" />} />
+            <Route path="/comentarios/editar/:id" element={<Form tipo="comentario" />} />
           </Routes>
         </main>
       </div>
