@@ -12,20 +12,19 @@ const Form = ({ tipo, recursoEditado }) => {
     const [usuarios, setUsuarios] = useState([]);
     const [albuns, setAlbuns] = useState([]);
     const [postagens, setPostagens] = useState([]);
-    const [usuarioId, setUsuarioId] = useState(recursoEditado?.usuario_id || '');  // Uso de ?. para evitar erro
+    const [usuarioId, setUsuarioId] = useState(recursoEditado?.usuario_id || '');
     const [loading, setLoading] = useState(false);
-    const [nome, setNome] = useState(recursoEditado?.nome || ''); // Uso de ?. para evitar erro
-    const [email, setEmail] = useState(recursoEditado?.email || ''); // Uso de ?. para evitar erro
-    const [nomeUsuario, setNomeUsuario] = useState(recursoEditado?.nome_usuario || ''); // Uso de ?. para evitar erro
-    const [titulo, setTitulo] = useState(recursoEditado?.titulo || ''); // Uso de ?. para evitar erro
-    const [conteudo, setConteudo] = useState(recursoEditado?.conteudo || ''); // Uso de ?. para evitar erro
-    const [concluido, setConcluido] = useState(recursoEditado?.concluido || false); // Uso de ?. para evitar erro
-    const [url, setUrl] = useState(recursoEditado?.url || ''); // Uso de ?. para evitar erro
-    const [urlMiniatura, setUrlMiniatura] = useState(recursoEditado?.url_miniatura || ''); // Uso de ?. para evitar erro
-    const [postagemId, setPostagemId] = useState(recursoEditado?.postagem_id || ''); // Uso de ?. para evitar erro
-    const [albumId, setAlbumId] = useState(recursoEditado?.album_id || ''); // Uso de ?. para evitar erro
+    const [nome, setNome] = useState(recursoEditado?.nome || '');
+    const [email, setEmail] = useState(recursoEditado?.email || '');
+    const [nomeUsuario, setNomeUsuario] = useState(recursoEditado?.nome_usuario || '');
+    const [titulo, setTitulo] = useState(recursoEditado?.titulo || '');
+    const [conteudo, setConteudo] = useState(recursoEditado?.conteudo || '');
+    const [concluido, setConcluido] = useState(recursoEditado?.concluido || false);
+    const [url, setUrl] = useState(recursoEditado?.url || '');
+    const [urlMiniatura, setUrlMiniatura] = useState(recursoEditado?.url_miniatura || '');
+    const [postagemId, setPostagemId] = useState(recursoEditado?.postagem_id || '');
+    const [albumId, setAlbumId] = useState(recursoEditado?.album_id || '');
 
-    // Função para buscar usuários
     const fetchUsuarios = async () => {
         try {
             const response = await fetch('http://127.0.0.1:8000/usuarios/');
@@ -33,12 +32,12 @@ const Form = ({ tipo, recursoEditado }) => {
                 throw new Error('Erro ao buscar usuários');
             }
             const data = await response.json();
-            setUsuarios(data); // Atualizando o estado com os dados dos usuários
+            setUsuarios(data);
         } catch (error) {
             console.error('Erro ao buscar usuários:', error);
         }
     };
-    // Função para buscar Albuns
+
     const fetchAlbuns = async () => {
         try {
             const response = await fetch('http://127.0.0.1:8000/albuns/');
@@ -46,12 +45,12 @@ const Form = ({ tipo, recursoEditado }) => {
                 throw new Error('Erro ao buscar albuns');
             }
             const data = await response.json();
-            setAlbuns(data); // Atualizando o estado com os dados dos albuns
+            setAlbuns(data);
         } catch (error) {
-            console.error('Erro ao buscar alguns:', error);
+            console.error('Erro ao buscar albuns:', error);
         }
     };
-    // Função para buscar Postagens
+
     const fetchPostagens = async () => {
         try {
             const response = await fetch('http://127.0.0.1:8000/postagens/');
@@ -59,11 +58,12 @@ const Form = ({ tipo, recursoEditado }) => {
                 throw new Error('Erro ao buscar postagens');
             }
             const data = await response.json();
-            setPostagens(data); // Atualizando o estado com os dados dos postagens
+            setPostagens(data);
         } catch (error) {
-            console.error('Erro ao buscar alguns:', error);
+            console.error('Erro ao buscar postagens:', error);
         }
     };
+
     useEffect(() => {
         fetchUsuarios();
         fetchAlbuns();
@@ -82,9 +82,9 @@ const Form = ({ tipo, recursoEditado }) => {
             concluido,
             url,
             url_miniatura: urlMiniatura,
-            usuario: usuarioId, // Associa o id do usuario
-            postagem: postagemId, // Associa o id da postagem
-            album: albumId, // Associa o id do album
+            usuario: usuarioId,
+            postagem: postagemId,
+            album: albumId,
         };
 
         try {
@@ -147,40 +147,89 @@ const Form = ({ tipo, recursoEditado }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>{recursoEditado ? `Editar ${tipo.charAt(0).toUpperCase() + tipo.slice(1)}` : `Criar ${tipo.charAt(0).toUpperCase() + tipo.slice(1)}`}</h2>
+        <form onSubmit={handleSubmit} className="p-4 bg-light rounded shadow">
+            <h2 className="mb-4">{recursoEditado ? `Editar ${tipo.charAt(0).toUpperCase() + tipo.slice(1)}` : `Criar ${tipo.charAt(0).toUpperCase() + tipo.slice(1)}`}</h2>
 
             {tipo === 'usuario' && (
                 <>
-                    <input
-                        type="text"
-                        placeholder="Nome"
-                        value={nome}
-                        onChange={(e) => setNome(e.target.value)}
-                    />
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Nome de Usuário"
-                        value={nomeUsuario}
-                        onChange={(e) => setNomeUsuario(e.target.value)}
-                    />
+                    <div className="mb-3">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Nome"
+                            value={nome}
+                            onChange={(e) => setNome(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <input
+                            type="email"
+                            className="form-control"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Nome de Usuário"
+                            value={nomeUsuario}
+                            onChange={(e) => setNomeUsuario(e.target.value)}
+                        />
+                    </div>
                 </>
             )}
 
             {tipo === 'tarefa' && (
                 <>
-                    <select value={usuarioId || ''} onChange={(e) => setUsuarioId(e.target.value)}>
-                        <option value="">Selecione um Usuário</option>
-                        {loading ? (
-                            <option>Carregando...</option>
-                        ) : (
-                            usuarios.length > 0 ? (
+                    <div className="mb-3">
+                        <select className="form-select" value={usuarioId || ''} onChange={(e) => setUsuarioId(e.target.value)}>
+                            <option value="">Selecione um Usuário</option>
+                            {loading ? (
+                                <option>Carregando...</option>
+                            ) : (
+                                usuarios.length > 0 ? (
+                                    usuarios.map((usuario) => (
+                                        <option key={usuario.id} value={usuario.id}>
+                                            {usuario.nome}
+                                        </option>
+                                    ))
+                                ) : (
+                                    <option value="">Nenhum usuário disponível</option>
+                                )
+                            )}
+                        </select>
+                    </div>
+
+                    <div className="mb-3">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Título"
+                            value={titulo}
+                            onChange={(e) => setTitulo(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3 form-check">
+                        <input
+                            type="checkbox"
+                            className="form-check-input"
+                            checked={concluido}
+                            onChange={(e) => setConcluido(e.target.checked)}
+                        />
+                        <label className="form-check-label">Concluída</label>
+                    </div>
+                </>
+            )}
+
+            {tipo === 'postagem' && (
+                <>
+                    <div className="mb-3">
+                        <select className="form-select" value={usuarioId} onChange={(e) => setUsuarioId(e.target.value)}>
+                            <option value="">Selecione um Usuário</option>
+                            {usuarios.length > 0 ? (
                                 usuarios.map((usuario) => (
                                     <option key={usuario.id} value={usuario.id}>
                                         {usuario.nome}
@@ -188,150 +237,157 @@ const Form = ({ tipo, recursoEditado }) => {
                                 ))
                             ) : (
                                 <option value="">Nenhum usuário disponível</option>
-                            )
-                        )}
-                    </select>
-
-                    <input
-                        type="text"
-                        placeholder="Título"
-                        value={titulo}
-                        onChange={(e) => setTitulo(e.target.value)}
-                    />
-                    <label>
-                        Concluída:
+                            )}
+                        </select>
+                    </div>
+                    <div className="mb-3">
                         <input
-                            type="checkbox"
-                            checked={concluido}
-                            onChange={(e) => setConcluido(e.target.checked)}
+                            type="text"
+                            className="form-control"
+                            placeholder="Título"
+                            value={titulo}
+                            onChange={(e) => setTitulo(e.target.value)}
                         />
-                    </label>
-                </>
-            )}
-
-            {tipo === 'postagem' && (
-                <>
-                    <select value={usuarioId} onChange={(e) => setUsuarioId(e.target.value)}>
-                        <option value="">Selecione um Usuário</option>
-                        {usuarios.length > 0 ? (
-                            usuarios.map((usuario) => (
-                                <option key={usuario.id} value={usuario.id}>
-                                    {usuario.nome}
-                                </option>
-                            ))
-                        ) : (
-                            <option value="">Nenhum usuário disponível</option>
-                        )}
-                    </select>
-                    <input
-                        type="text"
-                        placeholder="Título"
-                        value={titulo}
-                        onChange={(e) => setTitulo(e.target.value)}
-                    />
-                    <textarea
-                        placeholder="Conteúdo"
-                        value={conteudo}
-                        onChange={(e) => setConteudo(e.target.value)}
-                    />
+                    </div>
+                    <div className="mb-3">
+                        <textarea
+                            className="form-control"
+                            placeholder="Conteúdo"
+                            value={conteudo}
+                            onChange={(e) => setConteudo(e.target.value)}
+                        />
+                    </div>
                 </>
             )}
 
             {tipo === 'comentario' && (
                 <>
-                    <select value={postagemId} onChange={(e) => setPostagemId(e.target.value)}>
-                        <option value="">Selecione uma Postagem</option>
-                        {postagens.length > 0 ? (
-                            postagens.map((postagem) => (
-                                <option key={postagem.id} value={postagem.id}>
-                                    {postagem.titulo}
-                                </option>
-                            ))
-                        ) : (
-                            <option value="">Nenhuma postagem disponível</option>
-                        )}
-                    </select>
-                    <input
-                        type="text"
-                        placeholder="Nome"
-                        value={nome}
-                        onChange={(e) => setNome(e.target.value)}
-                    />
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <textarea
-                        placeholder="Conteúdo"
-                        value={conteudo}
-                        onChange={(e) => setConteudo(e.target.value)}
-                    />
+                    <div className="mb-3">
+                        <select className="form-select" value={postagemId} onChange={(e) => setPostagemId(e.target.value)}>
+                            <option value="">Selecione uma Postagem</option>
+                            {postagens.length > 0 ? (
+                                postagens.map((postagem) => (
+                                    <option key={postagem.id} value={postagem.id}>
+                                        {postagem.titulo}
+                                    </option>
+                                ))
+                            ) : (
+                                <option value="">Nenhuma postagem disponível</option>
+                            )}
+                        </select>
+                    </div>
+                    <div className="mb-3">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Nome"
+                            value={nome}
+                            onChange={(e) => setNome(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <input
+                            type="email"
+                            className="form-control"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <textarea
+                            className="form-control"
+                            placeholder="Conteúdo"
+                            value={conteudo}
+                            onChange={(e) => setConteudo(e.target.value)}
+                        />
+                    </div>
                 </>
             )}
 
             {tipo === 'album' && (
                 <>
-                    <select value={albumId} onChange={(e) => setAlbumId(e.target.value)}>
-                        <option value="">Selecione um Álbum</option>
-                        {albuns.length > 0 ? (
-                            albuns.map((album) => (
-                                <option key={album.id} value={album.id}>
-                                    {album.titulo}
-                                </option>
-                            ))
-                        ) : (
-                            <option value="">Nenhum álbum disponível</option>
-                        )}
-                    </select>
-                    <input
-                        type="text"
-                        placeholder="Título do Álbum"
-                        value={titulo}
-                        onChange={(e) => setTitulo(e.target.value)}
-                    />
+                    <div className="mb-3">
+                        <select className="form-select" value={usuarioId || ''} onChange={(e) => setUsuarioId(e.target.value)}>
+                            <option value="">Selecione um Usuário</option>
+                            {loading ? (
+                                <option>Carregando...</option>
+                            ) : (
+                                usuarios.length > 0 ? (
+                                    usuarios.map((usuario) => (
+                                        <option key={usuario.id} value={usuario.id}>
+                                            {usuario.nome}
+                                        </option>
+                                    ))
+                                ) : (
+                                    <option value="">Nenhum usuário disponível</option>
+                                )
+                            )}
+                        </select>
+                    </div>
+                    <div className="mb-3">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Título do Álbum"
+                            value={titulo}
+                            onChange={(e) => setTitulo(e.target.value)}
+                        />
+                    </div>
                 </>
             )}
 
             {tipo === 'foto' && (
                 <>
-                    <select value={albumId} onChange={(e) => setAlbumId(e.target.value)}>
-                        <option value="">Selecione um Álbum</option>
-                        {albuns.length > 0 ? (
-                            albuns.map((album) => (
-                                <option key={album.id} value={album.id}>
-                                    {album.titulo}
-                                </option>
-                            ))
-                        ) : (
-                            <option value="">Nenhum álbum disponível</option>
-                        )}
-                    </select>
-                    <input
-                        type="text"
-                        placeholder="Título"
-                        value={titulo}
-                        onChange={(e) => setTitulo(e.target.value)}
-                    />
-                    <input
-                        type="url"
-                        placeholder="URL da Foto"
-                        value={url}
-                        onChange={(e) => setUrl(e.target.value)}
-                    />
-                    <input
-                        type="url"
-                        placeholder="URL da Miniatura"
-                        value={urlMiniatura}
-                        onChange={(e) => setUrlMiniatura(e.target.value)}
-                    />
+                    <div className="mb-3">
+                        <select className="form-select" value={albumId} onChange={(e) => setAlbumId(e.target.value)}>
+                            <option value="">Selecione um Álbum</option>
+                            {albuns.length > 0 ? (
+                                albuns.map((album) => (
+                                    <option key={album.id} value={album.id}>
+                                        {album.titulo}
+                                    </option>
+                                ))
+                            ) : (
+                                <option value="">Nenhum álbum disponível</option>
+                            )}
+                        </select>
+                    </div>
+                    <div className="mb-3">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Título"
+                            value={titulo}
+                            onChange={(e) => setTitulo(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <input
+                            type="url"
+                            className="form-control"
+                            placeholder="URL da Foto"
+                            value={url}
+                            onChange={(e) => setUrl(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <input
+                            type="url"
+                            className="form-control"
+                            placeholder="URL da Miniatura"
+                            value={urlMiniatura}
+                            onChange={(e) => setUrlMiniatura(e.target.value)}
+                        />
+                    </div>
                 </>
             )}
 
-            <button type="submit" disabled={loading}>
-                {loading ? "Salvando..." : (recursoEditado ? `Atualizar ${tipo.charAt(0).toUpperCase() + tipo.slice(1)}` : `Criar ${tipo.charAt(0).toUpperCase() + tipo.slice(1)}`)}
-            </button>
+            <div className="mb-3 text-center">
+                <button type="submit" className="btn btn-primary" disabled={loading}>
+                    {loading ? 'Carregando...' : recursoEditado ? 'Atualizar' : 'Salvar'}
+                </button>
+            </div>
         </form>
     );
 };
