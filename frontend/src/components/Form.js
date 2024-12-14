@@ -10,18 +10,18 @@ import {
 
 const Form = ({ tipo, recursoEditado, postagens = [], albuns = [] }) => {
     const [usuarios, setUsuarios] = useState([]);
-    const [usuarioId, setUsuarioId] = useState(recursoEditado ? recursoEditado.usuario_id : '');
+    const [usuarioId, setUsuarioId] = useState(recursoEditado?.usuario_id || '');  // Uso de ?. para evitar erro
     const [loading, setLoading] = useState(false);
-    const [nome, setNome] = useState(recursoEditado ? recursoEditado.nome : '');
-    const [email, setEmail] = useState(recursoEditado ? recursoEditado.email : '');
-    const [nomeUsuario, setNomeUsuario] = useState(recursoEditado ? recursoEditado.nome_usuario : '');
-    const [titulo, setTitulo] = useState(recursoEditado ? recursoEditado.titulo : '');
-    const [conteudo, setConteudo] = useState(recursoEditado ? recursoEditado.conteudo : '');
-    const [concluido, setConcluido] = useState(recursoEditado ? recursoEditado.concluido : false);
-    const [url, setUrl] = useState(recursoEditado ? recursoEditado.url : '');
-    const [urlMiniatura, setUrlMiniatura] = useState(recursoEditado ? recursoEditado.url_miniatura : '');
-    const [postagemId, setPostagemId] = useState(recursoEditado ? recursoEditado.postagem_id : '');
-    const [albumId, setAlbumId] = useState(recursoEditado ? recursoEditado.album_id : '');
+    const [nome, setNome] = useState(recursoEditado?.nome || ''); // Uso de ?. para evitar erro
+    const [email, setEmail] = useState(recursoEditado?.email || ''); // Uso de ?. para evitar erro
+    const [nomeUsuario, setNomeUsuario] = useState(recursoEditado?.nome_usuario || ''); // Uso de ?. para evitar erro
+    const [titulo, setTitulo] = useState(recursoEditado?.titulo || ''); // Uso de ?. para evitar erro
+    const [conteudo, setConteudo] = useState(recursoEditado?.conteudo || ''); // Uso de ?. para evitar erro
+    const [concluido, setConcluido] = useState(recursoEditado?.concluido || false); // Uso de ?. para evitar erro
+    const [url, setUrl] = useState(recursoEditado?.url || ''); // Uso de ?. para evitar erro
+    const [urlMiniatura, setUrlMiniatura] = useState(recursoEditado?.url_miniatura || ''); // Uso de ?. para evitar erro
+    const [postagemId, setPostagemId] = useState(recursoEditado?.postagem_id || ''); // Uso de ?. para evitar erro
+    const [albumId, setAlbumId] = useState(recursoEditado?.album_id || ''); // Uso de ?. para evitar erro
 
     // Função para buscar usuários
     const fetchUsuarios = async () => {
@@ -43,12 +43,6 @@ const Form = ({ tipo, recursoEditado, postagens = [], albuns = [] }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Validação simples
-        if (!nome || !email || !nomeUsuario) {
-            alert('Preencha todos os campos obrigatórios.');
-            return;
-        }
 
         const data = {
             nome,
@@ -169,7 +163,6 @@ const Form = ({ tipo, recursoEditado, postagens = [], albuns = [] }) => {
                         )}
                     </select>
 
-
                     <input
                         type="text"
                         placeholder="Título"
@@ -284,7 +277,6 @@ const Form = ({ tipo, recursoEditado, postagens = [], albuns = [] }) => {
                             ))
                         ) : (
                             <option value="">Nenhum álbum disponível</option>
-
                         )}
                     </select>
                     <input
