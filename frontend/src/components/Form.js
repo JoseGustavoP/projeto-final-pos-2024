@@ -8,8 +8,10 @@ import {
     createFoto, updateFoto
 } from '../api';
 
-const Form = ({ tipo, recursoEditado, postagens = [], albuns = [] }) => {
+const Form = ({ tipo, recursoEditado }) => {
     const [usuarios, setUsuarios] = useState([]);
+    const [albuns, setAlbuns] = useState([]);
+    const [postagens, setPostagens] = useState([]);
     const [usuarioId, setUsuarioId] = useState(recursoEditado?.usuario_id || '');  // Uso de ?. para evitar erro
     const [loading, setLoading] = useState(false);
     const [nome, setNome] = useState(recursoEditado?.nome || ''); // Uso de ?. para evitar erro
@@ -36,9 +38,36 @@ const Form = ({ tipo, recursoEditado, postagens = [], albuns = [] }) => {
             console.error('Erro ao buscar usuários:', error);
         }
     };
-
+    // Função para buscar Albuns
+    const fetchAlbuns = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/albuns/');
+            if (!response.ok) {
+                throw new Error('Erro ao buscar albuns');
+            }
+            const data = await response.json();
+            setAlbuns(data); // Atualizando o estado com os dados dos albuns
+        } catch (error) {
+            console.error('Erro ao buscar alguns:', error);
+        }
+    };
+    // Função para buscar Postagens
+    const fetchPostagens = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/postagens/');
+            if (!response.ok) {
+                throw new Error('Erro ao buscar postagens');
+            }
+            const data = await response.json();
+            setPostagens(data); // Atualizando o estado com os dados dos postagens
+        } catch (error) {
+            console.error('Erro ao buscar alguns:', error);
+        }
+    };
     useEffect(() => {
-        fetchUsuarios(); // Chama a função quando o componente é montado
+        fetchUsuarios();
+        fetchAlbuns();
+        fetchPostagens();
     }, []);
 
     const handleSubmit = async (e) => {
